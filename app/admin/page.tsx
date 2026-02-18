@@ -2,12 +2,20 @@
 // Admin panel (broken access control: only checks client-side role)
 
 "use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+type User = {
+  id: string | number;
+  username: string;
+  email: string;
+  role: string;
+};
+
 export default function Admin() {
-  const [user, setUser] = useState(null);
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
   const router = useRouter();
 
   useEffect(() => {
