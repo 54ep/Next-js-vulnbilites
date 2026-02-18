@@ -2,7 +2,7 @@
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 flex flex-col justify-center items-center py-10">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-200 flex flex-col justify-center items-center py-10">
       <main className="max-w-xl w-full mx-auto p-8 bg-white rounded-2xl shadow-xl flex flex-col items-center border border-gray-100">
         <div className="mb-6 flex flex-col items-center">
           <div className="bg-red-100 text-red-600 rounded-full p-4 mb-2 shadow">

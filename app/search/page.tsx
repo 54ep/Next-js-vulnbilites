@@ -8,7 +8,7 @@ export default function Search() {
   const [q, setQ] = useState("");
   const [result, setResult] = useState("");
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
     setResult(await res.text());

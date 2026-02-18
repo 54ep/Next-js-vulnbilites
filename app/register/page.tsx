@@ -12,7 +12,7 @@ export default function Register() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleRegister = async (e) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // VULNERABILITY: Only client-side validation
     if (!username || !password || !email) {

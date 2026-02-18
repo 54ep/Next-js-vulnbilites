@@ -11,7 +11,13 @@ export default function Login() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  interface LoginResponse {
+    token?: string;
+    user?: { id: string; username: string };
+    error?: string;
+  }
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     // VULNERABILITY: Only client-side validation
     if (!username || !password) {
@@ -23,7 +29,7 @@ export default function Login() {
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
-    const data = await res.json();
+    const data: LoginResponse = await res.json();
     if (data.token) {
       // VULNERABILITY: Store JWT in localStorage
       localStorage.setItem("token", data.token);

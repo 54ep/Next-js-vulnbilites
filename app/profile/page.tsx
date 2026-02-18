@@ -5,10 +5,17 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+interface ProfileData {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
 export default function Profile() {
   const params = useSearchParams();
   const id = params.get("id");
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -21,11 +28,11 @@ export default function Profile() {
   if (error) return <div>{error}</div>;
   if (!profile) return <div>Loading...</div>;
 
-  function ChangePasswordForm({ userId }) {
+  function ChangePasswordForm({ userId }: { userId: string }) {
     const [newPassword, setNewPassword] = useState("");
     const [status, setStatus] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setStatus("");
       const res = await fetch("/api/change-password", {
@@ -33,7 +40,11 @@ export default function Profile() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: userId, newPassword }),
       });
-      const data = await res.json();
+      const data: ChangePasswordResponse = await res.json();
+      interface ChangePasswordResponse {
+        success: boolean;
+        error?: string;
+      }
       if (data.success) {
         setStatus("Password changed successfully.");
         setNewPassword("");
