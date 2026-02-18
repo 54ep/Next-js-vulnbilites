@@ -2,7 +2,7 @@
 // Profile page (IDOR: user can change id param to view others)
 
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 interface ProfileData {
@@ -12,7 +12,7 @@ interface ProfileData {
   password: string;
 }
 
-export default function Profile() {
+function ProfileContent() {
   const params = useSearchParams();
   const id = params.get("id");
   const [profile, setProfile] = useState<ProfileData | null>(null);
@@ -103,5 +103,13 @@ export default function Profile() {
       </div>
       <ChangePasswordForm userId={profile.id} />
     </main>
+  );
+}
+
+export default function Profile() {
+  return (
+    <Suspense>
+      <ProfileContent />
+    </Suspense>
   );
 }
