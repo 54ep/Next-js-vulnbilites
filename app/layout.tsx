@@ -27,6 +27,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="bg-red-700 text-white py-4 px-2 text-center font-bold text-lg tracking-wide shadow-md">
+          WARNING: This app is intentionally vulnerable. DO NOT deploy or use in
+          production!
+        </div>
         {children}
       </body>
     </html>
