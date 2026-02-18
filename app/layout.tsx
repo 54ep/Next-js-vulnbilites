@@ -27,9 +27,86 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="bg-red-700 text-white py-4 px-2 text-center font-bold text-lg tracking-wide shadow-md">
-          WARNING: This app is intentionally vulnerable. DO NOT deploy or use in
-          production!
+        <div className="relative bg-linear-to-r from-red-700 via-red-600 to-orange-600 text-white shadow-2xl border-b-4 border-red-900 overflow-hidden">
+          {/* Animated background pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.1) 10px, rgba(255,255,255,.1) 20px)",
+              }}
+            ></div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <div className="flex items-center justify-center space-x-4">
+              {/* Animated alert icon */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-yellow-300 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                <div className="relative bg-white/20 backdrop-blur-sm p-3 rounded-full border-2 border-white/40">
+                  <svg
+                    className="w-8 h-8 shrink-0 text-yellow-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="text-center flex-1 space-y-2">
+                <div className="flex items-center justify-center space-x-2">
+                  <span className="text-2xl animate-pulse">⚠️</span>
+                  <h2 className="font-black text-xl md:text-2xl tracking-wide uppercase drop-shadow-lg">
+                    Warning: Intentionally Vulnerable Application
+                  </h2>
+                  <span className="text-2xl animate-pulse">⚠️</span>
+                </div>
+
+                <div className="bg-black/20 backdrop-blur-sm rounded-lg px-4 py-3 border border-white/30 max-w-4xl mx-auto">
+                  <p className="text-sm md:text-base font-semibold leading-relaxed">
+                    🚨{" "}
+                    <span className="underline decoration-yellow-300 decoration-2">
+                      FOR EDUCATIONAL USE ONLY
+                    </span>{" "}
+                    🚨
+                  </p>
+                  <p className="text-xs md:text-sm mt-1.5 leading-relaxed">
+                    This application contains{" "}
+                    <strong>deliberate security vulnerabilities</strong> for
+                    cybersecurity training purposes.
+                    <br />
+                    <strong className="text-yellow-300">DO NOT</strong> deploy
+                    to production, expose to the internet, or use with real
+                    data!
+                  </p>
+                </div>
+              </div>
+
+              {/* Matching icon on the right for balance */}
+              <div className="hidden md:block relative">
+                <div className="absolute inset-0 bg-yellow-300 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                <div className="relative bg-white/20 backdrop-blur-sm p-3 rounded-full border-2 border-white/40">
+                  <svg
+                    className="w-8 h-8 shrink-0 text-yellow-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {children}
       </body>
